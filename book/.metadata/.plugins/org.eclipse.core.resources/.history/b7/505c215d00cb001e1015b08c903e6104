@@ -1,0 +1,6 @@
+package com.khit.book.entity;
+
+public class BaseEntity {
+
+	
+}

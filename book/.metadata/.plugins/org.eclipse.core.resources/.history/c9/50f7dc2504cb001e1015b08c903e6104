@@ -1,0 +1,21 @@
+package com.khit.book.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.khit.book.service.BookService;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@RestController	//@Controller는 주로 웹 페이지를 반환하는 데 사용됨, @RestController는 RESTful API를 구현하는 데 사용되어 클라이언트에게 JSON이나 XML 형태의 데이터를 직접 반환하는 데 적합함
+public class BookController {
+
+	private final BookService bookService;
+	
+	@GetMapping("/book")
+	public String save() {
+		return "<h1>도서 등록</h1>";
+	}
+	
+}

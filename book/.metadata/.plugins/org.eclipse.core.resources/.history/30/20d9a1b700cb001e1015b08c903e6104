@@ -1,0 +1,17 @@
+package com.khit.book.entity;
+
+import java.sql.Timestamp;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public class BaseEntity {
+
+	private Timestamp cratedDate;
+	
+	private Timestamp updatedDate;
+}
