@@ -20,13 +20,29 @@ public class BookService {
 		return "도서 등록 완료";
 	}
 
+	//도서 목록 보기
 	public List<Book> findAll() {
 		return bookRepository.findAll();
 	}
 
+	//도서 상세 보기
 	public Book findById(Long id) {
 		//찾는 id가 없을 경우 예외 처리
 		return bookRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("찾는 데이터가 존재하지 않습니다."));
 	}
+
+	//도서 삭제
+	public String deleteById(Long id) {
+		bookRepository.deleteById(id);
+		return "도서 삭제 완료";	//리엑트 if(res == "OK") 삭제
+	}
+
+	//도서 수정
+	public String update(Book book) {	
+		//Controller에서 이미 수정된 데이터를 저장
+		bookRepository.save(book); 
+		return "도서 수정 완료";
+	}
+	
 }

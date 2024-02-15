@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +27,7 @@ public class BookController {
 	//ResponseEntity<?> : body + header(200, 404)
 	//body에 올 수 있는 것 : String, Object
 	//@RequestBody Book book - 입력 폼의 데이터(json 형태)
-	@PostMapping("/book") //http://localhost:8080/book
+	@PostMapping("/book")
 	public ResponseEntity<?> save(@RequestBody Book book) {
 		String resultText = bookService.save(book);	//String형으로 보냄
 		return new ResponseEntity<>(resultText, HttpStatus.OK);	//body, header
@@ -43,5 +45,19 @@ public class BookController {
 	public ResponseEntity<?> bookOne(@PathVariable Long id){
 		Book book = bookService.findById(id);
 		return new ResponseEntity<>(book, HttpStatus.OK);
+	}
+	
+	//도서 삭제
+	@DeleteMapping("/book/{id}") //http://localhost:8080/book/1
+	public ResponseEntity<?> deleteBook(@PathVariable Long id) {
+		String resultText = bookService.deleteById(id);
+		return new ResponseEntity<>(resultText, HttpStatus.OK);
+	}
+	
+	//도서 수정
+	@PutMapping("/book") //http://localhost:8080/book
+	public ResponseEntity<?> updateBook(@RequestBody Book book) {
+		String resultText = bookService.update(book);
+		return new ResponseEntity<>(resultText, HttpStatus.OK);
 	}
 }
